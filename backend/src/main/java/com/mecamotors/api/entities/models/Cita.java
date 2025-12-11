@@ -1,9 +1,9 @@
-package com.mecamotors.api.entity.models;
+package com.mecamotors.api.entities.models;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import com.mecamotors.api.entity.enums.*;
+import com.mecamotors.api.entities.enums.*;
 
 @Entity
 @Table(name = "citas")

@@ -1,4 +1,4 @@
-package com.mecamotors.api.entity.models;
+package com.mecamotors.api.entities.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
-package com.mecamotors.api.entity.models;
+package com.mecamotors.api.entities.models;
 
-import com.mecamotors.api.entity.enums.EstadoOrden;
+import com.mecamotors.api.entities.enums.EstadoOrden;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
