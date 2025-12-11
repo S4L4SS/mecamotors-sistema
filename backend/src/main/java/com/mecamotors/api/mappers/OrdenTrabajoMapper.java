@@ -15,7 +15,7 @@ public interface OrdenTrabajoMapper {
     // --- Mapeo de la Cabecera ---
     @Mapping(source = "vehiculo.placa", target = "placaVehiculo")
     @Mapping(source = "vehiculo.marca", target = "marcaVehiculo")
-    @Mapping(source = "mecanico.username", target = "nombreMecanico") // O nombre real
+    @Mapping(source = "mecanico.username", target = "nombreMecanico")
     @Mapping(source = "totalEstimado", target = "totalEstimado")
     OrdenTrabajoDTO toDto(OrdenTrabajo orden);
 

@@ -26,6 +26,7 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Builder.Default
     private Boolean activo = true;
 
     // Relación ManyToOne: Un usuario tiene un rol principal

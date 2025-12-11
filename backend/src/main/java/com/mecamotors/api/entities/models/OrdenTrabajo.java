@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -45,4 +46,6 @@ public class OrdenTrabajo {
 
     @OneToMany(mappedBy = "ordenTrabajo", cascade = CascadeType.ALL)
     private List<DetalleOrden> detalles;
+
+    private BigDecimal totalEstimado;
 }
