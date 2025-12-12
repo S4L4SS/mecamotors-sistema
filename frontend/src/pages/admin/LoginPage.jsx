@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 export default function LoginPage() {
@@ -15,8 +15,18 @@ export default function LoginPage() {
     setError(null);
     setLoading(true);
     try {
-      await login(username, password);
-      navigate('/admin', { replace: true });
+      const userData = await login(username, password);
+      
+      // Verificar si el usuario tiene roles administrativos
+      const rolesAdministrativos = ['ADMIN', 'RECEPCIONISTA', 'MECANICO', 'GERENTE'];
+      const tieneAccesoAdmin = userData.roles && userData.roles.some(rol => rolesAdministrativos.includes(rol));
+      
+      if (tieneAccesoAdmin) {
+        navigate('/admin', { replace: true });
+      } else {
+        // Usuario normal (CLIENTE) - redirigir a su perfil
+        navigate('/mi-perfil', { replace: true });
+      }
     } catch (err) {
       console.error(err);
       setError('Credenciales inválidas o error en el servidor.');
@@ -54,6 +64,12 @@ export default function LoginPage() {
           </button>
           {error && <p className="alert error">{error}</p>}
         </form>
+        
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <Link to="/admin/register" style={{ color: '#007bff', textDecoration: 'none' }}>
+            ¿No tienes cuenta? Regístrate aquí
+          </Link>
+        </div>
       </div>
     </div>
   );

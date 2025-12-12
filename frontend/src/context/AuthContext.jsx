@@ -5,10 +5,23 @@ import { setAuthToken } from '../services/api';
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(() => localStorage.getItem('mm_token'));
+  const [token, setToken] = useState(() => {
+    try {
+      return localStorage.getItem('mm_token');
+    } catch (error) {
+      console.error('Error reading token from localStorage:', error);
+      return null;
+    }
+  });
+  
   const [user, setUser] = useState(() => {
-    const stored = localStorage.getItem('mm_user');
-    return stored ? JSON.parse(stored) : null;
+    try {
+      const stored = localStorage.getItem('mm_user');
+      return stored ? JSON.parse(stored) : null;
+    } catch (error) {
+      console.error('Error parsing user from localStorage:', error);
+      return null;
+    }
   });
 
   const isAuthenticated = !!token;

@@ -7,8 +7,11 @@ import AdminLayout from './layouts/AdminLayout';
 import HomePage from './pages/public/HomePage';
 import AppointmentPage from './pages/public/AppointmentPage';
 import TrackStatusPage from './pages/public/TrackStatusPage';
+import PerfilClientePage from './pages/public/PerfilClientePage';
+import SolicitarCotizacionPage from './pages/public/SolicitarCotizacionPage';
 
 import LoginPage from './pages/admin/LoginPage';
+import RegisterPage from './pages/admin/RegisterPage';
 import DashboardPage from './pages/admin/DashboardPage';
 import ClientesPage from './pages/admin/ClientesPage';
 import VehiculosPage from './pages/admin/VehiculosPage';
@@ -46,8 +49,27 @@ export default function App() {
         <Route path="/consultar-estado" element={<TrackStatusPage />} />
       </Route>
 
+      {/* Perfil de cliente (requiere autenticación) */}
+      <Route path="/mi-perfil" element={
+        <PrivateRoute roles={['CLIENTE']}>
+          <PublicLayout>
+            <PerfilClientePage />
+          </PublicLayout>
+        </PrivateRoute>
+      } />
+
+      {/* Solicitar cotización (cliente) */}
+      <Route path="/solicitar-cotizacion" element={
+        <PrivateRoute roles={['CLIENTE']}>
+          <PublicLayout>
+            <SolicitarCotizacionPage />
+          </PublicLayout>
+        </PrivateRoute>
+      } />
+
       {/* Login admin */}
       <Route path="/admin/login" element={<LoginPage />} />
+      <Route path="/admin/register" element={<RegisterPage />} />
 
       {/* Panel administrativo */}
       <Route
