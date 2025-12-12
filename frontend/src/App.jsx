@@ -26,7 +26,7 @@ function PrivateRoute({ children, roles }) {
   const { isAuthenticated, hasAnyRole } = useAuth();
 
   if (!isAuthenticated) {
-    return <Navigate to="/admin/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   if (roles && !hasAnyRole(roles)) {
@@ -39,14 +39,17 @@ function PrivateRoute({ children, roles }) {
 export default function App() {
   return (
     <Routes>
-      {/* Rutas públicas */}
+      {/* Ruta principal: login */}
+      <Route path="/" element={<LoginPage />} />
+
+      {/* Rutas públicas (sitio corporativo) */}
       <Route element={<PublicLayout />}>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/solicitar-cita" element={<AppointmentPage />} />
         <Route path="/consultar-estado" element={<TrackStatusPage />} />
       </Route>
 
-      {/* Login admin */}
+      {/* Alias opcional para login admin antiguo */}
       <Route path="/admin/login" element={<LoginPage />} />
 
       {/* Panel administrativo */}

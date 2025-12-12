@@ -15,8 +15,17 @@ export default function LoginPage() {
     setError(null);
     setLoading(true);
     try {
-      await login(username, password);
-      navigate('/admin', { replace: true });
+      const data = await login(username, password);
+      const roles = data?.roles || [];
+      const esInterno = roles.some((r) =>
+        ['ADMIN', 'RECEPCIONISTA', 'MECANICO', 'GERENTE'].includes(r)
+      );
+
+      if (esInterno) {
+        navigate('/admin', { replace: true });
+      } else {
+        navigate('/home', { replace: true });
+      }
     } catch (err) {
       console.error(err);
       setError('Credenciales inválidas o error en el servidor.');

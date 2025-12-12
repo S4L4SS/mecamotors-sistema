@@ -10,13 +10,13 @@ export default function Navbar() {
         </Link>
       </div>
       <nav className="navbar-right">
-        <NavLink to="/" end>
+        <NavLink to="/home" end>
           Inicio
         </NavLink>
         <a href="#servicios">Servicios</a>
         <NavLink to="/solicitar-cita">Solicitar Cita</NavLink>
         <NavLink to="/consultar-estado">Consultar Estado</NavLink>
-        <NavLink to="/admin/login">Panel</NavLink>
+        <NavLink to="/admin">Panel</NavLink>
       </nav>
     </header>
   );
